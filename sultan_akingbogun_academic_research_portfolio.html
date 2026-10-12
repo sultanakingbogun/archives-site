@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultan Akingbogun | Research & Innovation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            800: '#102a43',
+                            900: '#0b1b2b',
+                        },
+                        indigo: {
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .paper-body {
+            font-family: 'Merriweather', serif;
+            line-height: 1.85;
+        }
+        .paper-body h2 {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        .tab-active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        .dark .tab-active {
+            border-bottom: 2px solid #818cf8;
+            color: #818cf8;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#home" onclick="switchTab('home')" class="group flex flex-col">
+                    <span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                        Sultan Akingbogun
+                    </span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wider uppercase">
+                        Research · Innovation · Science · IP
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                    <button onclick="switchTab('home')" id="nav-home" class="nav-btn py-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Home</button>
+                    <button onclick="switchTab('research')" id="nav-research" class="nav-btn py-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Research</button>
+                    <button onclick="switchTab('projects')" id="nav-projects" class="nav-btn py-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Projects</button>
+                    <button onclick="switchTab('about')" id="nav-about" class="nav-btn py-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">About</button>
+                    <button onclick="switchTab('contact')" id="nav-contact" class="nav-btn py-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</button>
+                </nav>
+
+                <!-- Action Controls -->
+                <div class="flex items-center space-x-3">
+                    <!-- Export Code Button -->
+                    <button onclick="openExportModal()" title="Export site files for GitHub" class="p-2 text-xs font-semibold px-3 py-1.5 rounded-lg border border-indigo-200 dark:border-indigo-900/60 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/80 transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-code"></i>
+                        <span class="hidden sm:inline">Export Code</span>
+                    </button>
+
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" type="button" class="p-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors">
+                        <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden text-lg"></i>
+                        <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden text-lg"></i>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" type="button" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-4 space-y-1">
+            <button onclick="switchTab('home')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">Home</button>
+            <button onclick="switchTab('research')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">Research</button>
+            <button onclick="switchTab('projects')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">Projects</button>
+            <button onclick="switchTab('about')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">About</button>
+            <button onclick="switchTab('contact')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">Contact</button>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <!-- ==================== VIEW 1: HOME ==================== -->
+        <section id="view-home" class="tab-view space-y-16">
+            <!-- Hero Section -->
+            <div class="relative rounded-3xl p-8 sm:p-12 md:p-16 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white overflow-hidden shadow-2xl">
+                <!-- Abstract BG shapes -->
+                <div class="absolute -right-12 -top-12 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-12 -bottom-12 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-3xl space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-xs font-semibold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                        University of Nottingham · Pharmacology
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-none">
+                        Sultan Akingbogun
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-300 font-light leading-relaxed">
+                        Pharmacology student exploring the intersection of scientific research, artificial intelligence, innovation, and intellectual property.
+                    </p>
+                    <div class="pt-4 flex flex-wrap gap-4">
+                        <button onclick="switchTab('research')" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                            <span>Read Featured Research</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                        <button onclick="switchTab('projects')" class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-sm backdrop-blur-sm transition-all hover:-translate-y-0.5">
+                            View Portfolio
+                        </button>
+                        <button onclick="switchTab('about')" class="px-6 py-3 rounded-xl bg-transparent hover:bg-white/5 text-slate-300 font-semibold text-sm transition-all">
+                            About Me
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Research Card -->
+            <div class="space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+                    <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-3">
+                        <i class="fa-solid fa-bookmark text-indigo-600 dark:text-indigo-400 text-xl"></i>
+                        Featured Research
+                    </h2>
+                    <span class="text-xs font-medium uppercase tracking-wider text-slate-500">Peer & Academic Papers</span>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-800 transition-all duration-300 group">
+                    <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        <span class="bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 font-semibold px-2.5 py-1 rounded-md border border-indigo-100 dark:border-indigo-900/40">Intellectual Property & AI</span>
+                        <span><i class="fa-regular fa-calendar mr-1"></i> October 2026</span>
+                        <span><i class="fa-regular fa-clock mr-1"></i> 12 min read</span>
+                    </div>
+
+                    <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors mb-3">
+                        AI-Assisted Innovation and the Future of Patent Inventorship
+                    </h3>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed mb-6 font-normal">
+                        An independent research project examining how generative artificial intelligence models and autonomous algorithms challenge traditional legal concepts of human inventorship, analyzing recent global judicial rulings and proposing adaptive statutory frameworks for IP law.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                            <span class="font-medium text-slate-800 dark:text-slate-200">Keywords:</span>
+                            <span class="italic">Patent Law, Generative AI, DABUS, Drug Discovery, IP Frameworks</span>
+                        </div>
+                        <button onclick="switchTab('research'); openPaper('ai-patent');" class="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold text-sm group-hover:translate-x-1 transition-transform">
+                            Read Full Research Paper <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Focus Areas Grid -->
+            <div class="space-y-6">
+                <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4">
+                    Core Disciplines & Focus Areas
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-flask-vial"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Pharmacology & Drug Design</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Investigation of enzyme kinetics, receptor dynamics, and modern pharmacokinetics to understand drug activity and therapeutic target identification.
+                        </p>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Intellectual Property & IP Law</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Analyzing the evolving landscape of patent law, inventorship standards, and commercialization strategies within biotechnology and software.
+                        </p>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Scientific Communication</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Translating complex biological mechanisms and technical legal analyses into clear, structured publications and accessible educational content.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW 2: RESEARCH ==================== -->
+        <section id="view-research" class="tab-view hidden space-y-10">
+            <!-- Header & Search Controls -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Research & Publications</h1>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Academic papers, analytical essays, and patent law research.</p>
+                </div>
+                
+                <!-- Topic Filter / Search -->
+                <div class="flex items-center gap-3">
+                    <div class="relative w-full md:w-64">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="research-search" onkeyup="filterResearch()" placeholder="Search topics or keywords..." class="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-800 dark:text-slate-200">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paper Selection Tabs -->
+            <div class="flex gap-2 overflow-x-auto pb-2 text-xs font-semibold" id="paper-list-tabs">
+                <button onclick="openPaper('ai-patent')" id="tab-paper-ai" class="paper-tab-btn px-4 py-2 rounded-xl border border-indigo-600 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 whitespace-nowrap">
+                    AI & Patent Inventorship
+                </button>
+                <button onclick="openPaper('enzyme')" id="tab-paper-enzyme" class="paper-tab-btn px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700 whitespace-nowrap">
+                    Acetylcholinesterase Kinetics
+                </button>
+            </div>
+
+            <!-- PAPER 1: AI & Patent Inventorship Reader -->
+            <article id="paper-ai-patent" class="paper-content bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 md:p-12 shadow-sm">
+                <!-- Action / Utilities Bar -->
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-6 mb-8 text-xs text-slate-500">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold rounded">DOI: 10.5281/zenodo.archive.2026</span>
+                        <span>Published: Oct 2026</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="copyCitation('ai-patent')" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1">
+                            <i class="fa-regular fa-copy"></i> Copy Citation
+                        </button>
+                        <button onclick="toggleReadingMode()" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1">
+                            <i class="fa-solid fa-book-open"></i> Toggle Focus View
+                        </button>
+                        <a href="javascript:alert('PDF Download generated dynamically. Ensure your repo contains research-paper.pdf')" class="px-3 py-1.5 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-500 transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-file-pdf"></i> Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Paper Header -->
+                <header class="space-y-4 mb-10">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                        AI-Assisted Innovation and the Future of Patent Inventorship
+                    </h1>
+                    <div class="text-sm text-slate-600 dark:text-slate-400 font-medium flex flex-wrap items-center gap-y-2 gap-x-4">
+                        <span class="text-slate-900 dark:text-slate-100 font-bold"><i class="fa-solid fa-user-pen mr-1"></i> Sultan Akingbogun</span>
+                        <span>•</span>
+                        <span>School of Life Sciences, University of Nottingham</span>
+                        <span>•</span>
+                        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Specialization: IP & Pharmacology</span>
+                    </div>
+                    <!-- Tags -->
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">#PatentLaw</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">#ArtificialIntelligence</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">#DrugDiscovery</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">#Inventorship</span>
+                    </div>
+                </header>
+
+                <!-- Abstract Box -->
+                <div class="bg-slate-50 dark:bg-slate-950 rounded-xl p-6 border-l-4 border-indigo-600 dark:border-indigo-500 mb-10 text-sm leading-relaxed">
+                    <h2 class="font-sans font-bold uppercase tracking-wider text-xs text-indigo-700 dark:text-indigo-400 mb-2">Abstract</h2>
+                    <p class="text-slate-700 dark:text-slate-300 italic">
+                        The integration of artificial intelligence (AI) in scientific discovery—ranging from molecular property prediction to autonomous de novo drug design—has fundamentally challenged established global patent frameworks. Modern patent legislation globally relies on the legal fiction of a human inventor who conceives an inventive step. This paper analyzes landmark jurisprudence surrounding AI inventorship, evaluates the economic implications for pharmaceutical R&D, and proposes a modernized statutory framework featuring an 'AI-Assisted Invention' standard.
+                    </p>
+                </div>
+
+                <!-- Section Jump Menu -->
+                <div class="mb-10 p-4 bg-slate-100/60 dark:bg-slate-800/50 rounded-xl border border-slate-200/80 dark:border-slate-800">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">Table of Contents</span>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs font-medium text-indigo-600 dark:text-indigo-400">
+                        <li><a href="#section-1" class="hover:underline">1. Introduction & Background</a></li>
+                        <li><a href="#section-2" class="hover:underline">2. The Human Conception Requirement</a></li>
+                        <li><a href="#section-3" class="hover:underline">3. Landmark Jurisprudence (DABUS Cases)</a></li>
+                        <li><a href="#section-4" class="hover:underline">4. Impact on Pharmaceutical R&D</a></li>
+                        <li><a href="#section-5" class="hover:underline">5. Proposed Legislative Reforms</a></li>
+                        <li><a href="#section-6" class="hover:underline">6. Conclusion & References</a></li>
+                    </ul>
+                </div>
+
+                <!-- Paper Body Text -->
+                <div class="paper-body text-slate-800 dark:text-slate-200 text-base sm:text-lg space-y-8">
+                    
+                    <section id="section-1" class="space-y-4">
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white pt-4">1. Introduction & Background</h2>
+                        <p>
+                            Artificial Intelligence (AI) has progressed from a complementary computational tool to a primary driver of hypothesis generation and molecular synthesis in pharmaceutical research. Algorithms utilizing deep generative architectures, transformer models, and reinforced neural networks now design novel chemical entities with high binding affinities in silico before human laboratory validation <span class="text-indigo-600 dark:text-indigo-400 font-semibold cursor-pointer" onclick="scrollToRef('ref-1')">[1]</span>.
+                        </p>
+                        <p>
+                            However, international patent statutes, such as the UK Patents Act 1977 and Title 35 of the United States Code (35 U.S.C.), explicitly restrict inventorship to natural human persons. This statutory constraint creates an emerging legal vacuum: as AI systems become capable of generating inventive outputs with minimal human intervention, the patent eligibility of key pharmaceutical breakthroughs comes under severe threat.
+                        </p>
+                    </section>
+
+                    <section id="section-2" class="space-y-4">
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white pt-4">2. The Legal Standard of Human Conception</h2>
+                        <p>
+                            Central to patent doctrine across major jurisdictions is the concept of <em>conception</em>—defined in US jurisprudence as the "complete performance of the mental part of the inventive act." <span class="text-indigo-600 dark:text-indigo-400 font-semibold cursor-pointer" onclick="scrollToRef('ref-2')">[2]</span> In the United Kingdom, Section 7(3) of the Patents Act 1977 defines an inventor as the "actual deviser of the invention."
+                        </p>
+                        <p>
+                            When an AI platform identifies a therapeutic candidate or optimizes a crystal structure, the human researcher may merely provide training datasets or general prompts. Under existing doctrine, if no single natural person contributed to the legal notion of conception, the invention risks being rendered unpatentable and placed into the public domain immediately upon disclosure.
+                        </p>
+                    </section>
+
+                    <section id="section-3" class="space-y-4">
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white pt-4">3. Landmark Jurisprudence: The DABUS Litigation</h2>
+                        <p>
+                            The international legal debate crystallized through the global patent applications filed for inventions generated by <strong>DABUS</strong> (Device for the Autonomous Bootstrapping of Unified Sentience), created by Dr. Stephen Thaler <span class="text-indigo-600 dark:text-indigo-400 font-semibold cursor-pointer" onclick="scrollToRef('ref-3')">[3]</span>. High courts in the UK, United States, Europe, and Australia were called to address whether non-human entities can be designated as inventors.
+                        </p>
+                        <div class="bg-slate-50 dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-sm font-sans space-y-2 my-4">
+                            <span class="font-bold text-slate-900 dark:text-white block">Key Judicial Holdings:</span>
+                            <ul class="list-disc pl-5 space-y-1 text-slate-600 dark:text-slate-400">
+                                <li><strong>UK Supreme Court (2023):</strong> Unanimously dismissed the appeal, holding that an inventor must be a natural person under the Patents Act 1977.</li>
+                                <li><strong>US Court of Appeals for the Federal Circuit (2022):</strong> Confirmed that 35 U.S.C. § 101 unambiguously requires human individuals as inventors.</li>
+                                <li><strong>EPO Board of Appeal:</strong> Reaffirmed that under the European Patent Convention (EPC), named inventors must have human legal capacity.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="section-4" class="space-y-4">
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white pt-4">4. Strategic Implications for Pharmaceutical R&D</h2>
+                        <p>
+                            The pharmaceutical sector relies heavily on patent protection to recoup the enormous capital investments required for pre-clinical optimization and clinical trials. If AI-generated molecules are excluded from patent protection due to formal inventorship deficiencies, life sciences enterprises may pivot toward trade secrets, stifling open scientific discourse and delaying life-saving therapies <span class="text-indigo-600 dark:text-indigo-400 font-semibold cursor-pointer" onclick="scrollToRef('ref-4')">[4]</span>.
+                        </p>
+                    </section>
+
+                    <section id="section-5" class="space-y-4">
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white pt-4">5. Proposed Legislative Reforms</h2>
+                        <p>
+                            To reconcile technological advancement with patent policy, this paper proposes a statutory doctrine of <strong>"Significant Human Direction" (SHD)</strong>. Under this framework:
+                        </p>
+                        <ol class="list-decimal pl-6 space-y-2 text-slate-700 dark:text-slate-300 font-sans text-sm sm:text-base">
+                            <li>Inventorship is assigned to the primary human researcher who formulates the target criteria, curate training parameters, or validates functional outcomes.</li>
+                            <li>Patent offices require mandatory disclosure of AI system usage as a procedural requirement rather than a bar to patentability.</li>
+                            <li>Creation of an auxiliary 'AI-Derived Patent Category' featuring shortened exclusivity terms for fully autonomous discoveries.</li>
+                        </ol>
+                    </section>
+
+                    <section id="section-6" class="space-y-4 border-t border-slate-200 dark:border-slate-800 pt-8">
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">6. References & Citations</h2>
+                        <ol class="list-decimal pl-6 space-y-3 font-sans text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                            <li id="ref-1">
+                                <span class="font-semibold text-slate-800 dark:text-slate-200">Schneider, P., et al. (2020).</span> Rethinking drug design in the artificial intelligence era. <em>Nature Reviews Drug Discovery</em>, 19(5), 353-364.
+                            </li>
+                            <li id="ref-2">
+                                <span class="font-semibold text-slate-800 dark:text-slate-200">Townsend v. Smith</span>, 36 F.2d 292 (C.C.P.A. 1929) (Establishing the legal doctrine of conception).
+                            </li>
+                            <li id="ref-3">
+                                <span class="font-semibold text-slate-800 dark:text-slate-200">Thaler v. Comptroller-General of Patents</span> [2023] UKSC 49 (UK Supreme Court ruling on DABUS).
+                            </li>
+                            <li id="ref-4">
+                                <span class="font-semibold text-slate-800 dark:text-slate-200">Abbott, R. (2020).</span> <em>The Reasonable Robot: Artificial Intelligence and the Law</em>. Cambridge University Press.
+                            </li>
+                        </ol>
+                    </section>
+                </div>
+            </article>
+
+            <!-- PAPER 2: Enzyme Kinetics (Hidden initial view) -->
+            <article id="paper-enzyme" class="paper-content hidden bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm">
+                <div class="space-y-4">
+                    <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Laboratory Research Project</span>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white">
+                        Investigation of Acetylcholinesterase Activity and Inhibition Kinetics
+                    </h1>
+                    <p class="text-slate-500 text-sm">Author: Sultan Akingbogun · Department of Pharmacology</p>
+                    <div class="p-4 bg-slate-50 dark:bg-slate-950 rounded-xl text-sm italic text-slate-600 dark:text-slate-300">
+                        Detailed spectrophotometric assay evaluating the Km and Vmax of acetylcholinesterase in the presence of reversible inhibitors, investigating therapeutic applications in neurodegenerative disease models.
+                    </div>
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                        Full detailed report available upon request or view key metrics under the Projects section.
+                    </p>
+                </div>
+            </article>
+        </section>
+
+        <!-- ==================== VIEW 3: PROJECTS ==================== -->
+        <section id="view-projects" class="tab-view hidden space-y-8">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-6">
+                <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Projects & Practical Work</h1>
+                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Academic laboratory investigations, IP legal studies, and educational initiatives.</p>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:shadow-lg transition-all">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Legal & Technical Research</span>
+                            <span class="px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950">2026</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">AI & Patent Inventorship Framework</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Comprehensive paper evaluating global judicial responses to AI-conceived patent claims. Analyzes UK, US, and EPO patent jurisprudence to propose legal reforms for generative models in pharmaceutical discovery.
+                        </p>
+                    </div>
+                    <div class="pt-6 flex items-center justify-between border-t border-slate-100 dark:border-slate-800 mt-4">
+                        <span class="text-xs text-slate-500 font-mono">Status: Completed</span>
+                        <button onclick="switchTab('research'); openPaper('ai-patent');" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">Read Paper →</button>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:shadow-lg transition-all">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Pharmacology Lab Project</span>
+                            <span class="px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950">2025</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Acetylcholinesterase Enzyme Kinetics</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Spectrophotometric analysis of enzyme activity utilizing Michaelis-Menten kinetics and Lineweaver-Burk transformations. Evaluated competitive vs. non-competitive inhibition profiles.
+                        </p>
+                    </div>
+                    <div class="pt-6 flex items-center justify-between border-t border-slate-100 dark:border-slate-800 mt-4">
+                        <span class="text-xs text-slate-500 font-mono">Status: Laboratory Verified</span>
+                        <button onclick="switchTab('research'); openPaper('enzyme');" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">View Details →</button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:shadow-lg transition-all">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Pharmacokinetics & Drug Design</span>
+                            <span class="px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950">2025 - 2026</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Medicinal Structure-Activity Relationships (SAR)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Investigation into computational modeling of ligand-receptor interactions, Lipinski’s Rule of Five compliance, and ADME property optimization for small molecule drug leads.
+                        </p>
+                    </div>
+                    <div class="pt-6 flex items-center justify-between border-t border-slate-100 dark:border-slate-800 mt-4">
+                        <span class="text-xs text-slate-500 font-mono">Status: Academic Study</span>
+                        <span class="text-xs text-slate-400">In Progress</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:shadow-lg transition-all">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Education & Mentorship</span>
+                            <span class="px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950">Ongoing</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">GCSE Science Pedagogy & Curriculum Support</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Designing structured revision frameworks and personalized active-recall learning strategies for secondary school students in Chemistry, Biology, and Physics.
+                        </p>
+                    </div>
+                    <div class="pt-6 flex items-center justify-between border-t border-slate-100 dark:border-slate-800 mt-4">
+                        <span class="text-xs text-slate-500 font-mono">Status: Active Mentorship</span>
+                        <span class="text-xs text-slate-400 font-medium">Community Outreach</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW 4: ABOUT ==================== -->
+        <section id="view-about" class="tab-view hidden space-y-12">
+            <!-- Header -->
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-6">
+                <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">About Sultan Akingbogun</h1>
+                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Pharmacology Student · University of Nottingham</p>
+            </div>
+
+            <!-- Profile Summary & Focus Areas -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-2 space-y-6 text-slate-700 dark:text-slate-300 text-base leading-relaxed">
+                    <p>
+                        I am a Pharmacology student at the <strong>University of Nottingham</strong> exploring the nexus between medical research, pharmaceutical innovation, artificial intelligence, and intellectual property law.
+                    </p>
+                    <p>
+                        Rather than viewing scientific research in isolation, my academic interest focuses on how scientific breakthroughs transition from laboratory discovery to patented therapeutic innovation, and how legal systems adapt to emerging technologies like generative AI.
+                    </p>
+
+                    <div class="pt-4">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Core Academic & Research Interests</h3>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-microchip text-indigo-600 dark:text-indigo-400"></i>
+                                <span>Artificial Intelligence & IP</span>
+                            </div>
+                            <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-capsules text-indigo-600 dark:text-indigo-400"></i>
+                                <span>Pharmacology & Drug Discovery</span>
+                            </div>
+                            <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-gavel text-indigo-600 dark:text-indigo-400"></i>
+                                <span>Patent Law Frameworks</span>
+                            </div>
+                            <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-atom text-indigo-600 dark:text-indigo-400"></i>
+                                <span>Enzyme & Receptor Dynamics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fast Facts Sidebar -->
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 h-fit space-y-6">
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">Quick Overview</h3>
+                    <div class="space-y-4 text-xs">
+                        <div>
+                            <span class="text-slate-400 block uppercase font-medium">Institution</span>
+                            <span class="text-slate-800 dark:text-slate-200 font-semibold">University of Nottingham</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block uppercase font-medium">Degree Program</span>
+                            <span class="text-slate-800 dark:text-slate-200 font-semibold">BSc Pharmacology</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block uppercase font-medium">Primary Focus</span>
+                            <span class="text-slate-800 dark:text-slate-200 font-semibold">Research, AI Patenting, Drug Mechanisms</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block uppercase font-medium">Location</span>
+                            <span class="text-slate-800 dark:text-slate-200 font-semibold">Nottingham / London, UK</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Timeline -->
+            <div class="space-y-6 pt-6">
+                <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-4">
+                    Academic & Professional Experience
+                </h2>
+
+                <div class="relative border-l-2 border-indigo-200 dark:border-indigo-900/60 ml-4 space-y-8 pl-6">
+                    <!-- Item 1 -->
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-indigo-600 ring-4 ring-white dark:ring-slate-950"></span>
+                        <div class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase">2023 - Present</div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Pharmacology Degree Candidate</h3>
+                        <p class="text-xs text-slate-500 font-medium">University of Nottingham</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+                            Coursework covering molecular pharmacology, neuropharmacology, drug design principles, pharmacokinetic modeling, and biochemical research methodologies.
+                        </p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-slate-400 dark:bg-slate-700 ring-4 ring-white dark:ring-slate-950"></span>
+                        <div class="text-xs font-semibold text-slate-500 uppercase">2024 - Present</div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Independent Legal & IP Research</h3>
+                        <p class="text-xs text-slate-500 font-medium">Self-Directed Study</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+                            Conducting independent analysis on AI inventorship standards, investigating precedent cases across the EPO, USPTO, and UK IPO.
+                        </p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-slate-400 dark:bg-slate-700 ring-4 ring-white dark:ring-slate-950"></span>
+                        <div class="text-xs font-semibold text-slate-500 uppercase">2023 - Present</div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Academic Mentor & Science Tutor</h3>
+                        <p class="text-xs text-slate-500 font-medium">GCSE Level Academic Support</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+                            Guiding students through complex scientific concepts in chemistry and biology, developing structured analytical frameworks for examinations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW 5: CONTACT ==================== -->
+        <section id="view-contact" class="tab-view hidden space-y-10">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-6">
+                <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Get in Touch</h1>
+                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Open to research collaborations, academic discussions, and IP law inquiries.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Contact Info Card -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-6">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Contact Information</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Feel free to reach out for academic inquiries, discussions regarding AI inventorship research, or collaborative projects.
+                    </p>
+
+                    <div class="space-y-4 text-xs">
+                        <div class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <div class="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px] uppercase">Academic Email</span>
+                                <span class="font-semibold">sultan.akingbogun@nottingham.ac.uk</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <div class="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                                <i class="fa-brands fa-github"></i>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px] uppercase">GitHub</span>
+                                <a href="https://github.com/sultanakingbogun" target="_blank" class="font-semibold hover:underline text-indigo-600 dark:text-indigo-400">github.com/sultanakingbogun</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <div class="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px] uppercase">Location</span>
+                                <span class="font-semibold">Nottingham, United Kingdom</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simple Contact Form -->
+                <form onsubmit="event.preventDefault(); alert('Message feature ready! Your inquiry will be logged.');" class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Send a Message</h3>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">Your Name</label>
+                        <input type="text" required placeholder="Dr. Jane Doe" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">Your Email</label>
+                        <input type="email" required placeholder="jane@university.edu" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">Subject</label>
+                        <input type="text" required placeholder="AI Patent Law Inquiry" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">Message</label>
+                        <textarea rows="4" required placeholder="Write your message here..." class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs rounded-xl shadow-md transition-colors">
+                        Send Inquiry
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <div>
+                © 2026 Sultan Akingbogun. All research & publication rights reserved.
+            </div>
+            <div class="flex items-center gap-6">
+                <span>University of Nottingham</span>
+                <a href="https://github.com/sultanakingbogun" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">GitHub Repository</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GitHub Pages Code Export Overlay Modal -->
+    <div id="export-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <i class="fa-brands fa-github text-indigo-600 dark:text-indigo-400"></i>
+                    Export Website Code for GitHub Pages
+                </h3>
+                <button onclick="closeExportModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                To host this website on GitHub Pages for free under your repository <code class="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-indigo-600 dark:text-indigo-400">archives-site</code>:
+            </p>
+
+            <ol class="list-decimal pl-5 text-xs text-slate-600 dark:text-slate-300 space-y-1 font-mono">
+                <li>Copy this entire complete HTML code block.</li>
+                <li>Go to GitHub repository <strong>sultanakingbogun/archives-site</strong>.</li>
+                <li>Click <strong>Add File → Create new file</strong>.</li>
+                <li>Name the file <strong><code class="text-indigo-600 font-bold">index.html</code></strong>.</li>
+                <li>Paste the code, click <strong>Commit Changes</strong>, and enable GitHub Pages in repository Settings!</li>
+            </ol>
+
+            <div class="pt-2 flex justify-end gap-3">
+                <button onclick="closeExportModal()" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-700">Close</button>
+                <button onclick="copyFullSourceCode()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-xs font-semibold hover:bg-indigo-500 transition-colors flex items-center gap-1.5">
+                    <i class="fa-regular fa-copy"></i>
+                    Copy Code
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching router
+        function switchTab(tabId) {
+            // Hide all views
+            document.querySelectorAll('.tab-view').forEach(view => {
+                view.classList.add('hidden');
+            });
+            // Reset active nav button state
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+            });
+
+            // Show selected view
+            const targetView = document.getElementById('view-' + tabId);
+            if (targetView) {
+                targetView.classList.remove('hidden');
+            }
+
+            // Set active nav button
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.add('tab-active');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Hide mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // Toggle mobile navigation menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Paper switching within Research view
+        function openPaper(paperKey) {
+            document.querySelectorAll('.paper-content').forEach(p => p.classList.add('hidden'));
+            
+            // Reset tabs styling
+            document.querySelectorAll('.paper-tab-btn').forEach(btn => {
+                btn.className = 'paper-tab-btn px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-slate-300 whitespace-nowrap';
+            });
+
+            if (paperKey === 'ai-patent') {
+                document.getElementById('paper-ai-patent').classList.remove('hidden');
+                document.getElementById('tab-paper-ai').className = 'paper-tab-btn px-4 py-2 rounded-xl border border-indigo-600 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-semibold whitespace-nowrap';
+            } else if (paperKey === 'enzyme') {
+                document.getElementById('paper-enzyme').classList.remove('hidden');
+                document.getElementById('tab-paper-enzyme').className = 'paper-tab-btn px-4 py-2 rounded-xl border border-indigo-600 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-semibold whitespace-nowrap';
+            }
+        }
+
+        // Search/Filter research topics
+        function filterResearch() {
+            const query = document.getElementById('research-search').value.toLowerCase();
+            const paper = document.getElementById('paper-ai-patent');
+            if (paper.innerText.toLowerCase().includes(query)) {
+                paper.style.display = 'block';
+            } else {
+                paper.style.display = 'none';
+            }
+        }
+
+        // Copy Citation Helper
+        function copyCitation(paperKey) {
+            const citation = "Akingbogun, S. (2026). AI-Assisted Innovation and the Future of Patent Inventorship. University of Nottingham Research Archive, DOI: 10.5281/zenodo.archive.2026.";
+            
+            // Fallback clipboard command
+            const el = document.createElement('textarea');
+            el.value = citation;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            alert('Citation copied to clipboard:\n\n' + citation);
+        }
+
+        // Toggle Focus Reading Mode
+        function toggleReadingMode() {
+            const paper = document.getElementById('paper-ai-patent');
+            paper.classList.toggle('max-w-4xl');
+            paper.classList.toggle('mx-auto');
+        }
+
+        // Smooth scroll to references
+        function scrollToRef(refId) {
+            const elem = document.getElementById(refId);
+            if (elem) {
+                elem.scrollIntoView({ behavior: 'smooth' });
+                elem.classList.add('bg-indigo-50', 'dark:bg-indigo-950');
+                setTimeout(() => {
+                    elem.classList.remove('bg-indigo-50', 'dark:bg-indigo-950');
+                }, 2000);
+            }
+        }
+
+        // Export Modal Controls
+        function openExportModal() {
+            document.getElementById('export-modal').classList.remove('hidden');
+        }
+        function closeExportModal() {
+            document.getElementById('export-modal').classList.add('hidden');
+        }
+        function copyFullSourceCode() {
+            const code = document.documentElement.outerHTML;
+            const el = document.createElement('textarea');
+            el.value = "<!DOCTYPE html>\n" + code;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert('Complete website code copied! Paste it directly into your GitHub index.html file.');
+        }
+
+        // ================= Theme Toggle Script =================
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        // Initialize Home view on load
+        window.onload = function() {
+            switchTab('home');
+        };
+    </script>
+</body>
+</html>
