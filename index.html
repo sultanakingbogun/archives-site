@@ -32,7 +32,6 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        // Check local storage or system preference for dark mode
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -56,21 +55,19 @@
             </a>
 
             <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+            <nav class="hidden md:flex items-center space-x-7 text-sm font-medium">
                 <a href="#home" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 transition">Home</a>
                 <a href="#research" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Research</a>
                 <a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Projects</a>
+                <a href="#archives" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">The Archives</a>
                 <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">About</a>
                 <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a>
             </nav>
 
             <div class="flex items-center space-x-4">
-                <!-- Theme Toggle Button -->
                 <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
                     <i id="theme-icon" class="fa-solid fa-moon"></i>
                 </button>
-
-                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-button" aria-label="Open Menu" class="md:hidden p-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
                     <i class="fa-solid fa-bars text-lg"></i>
                 </button>
@@ -82,6 +79,7 @@
             <a href="#home" class="block py-2 text-base font-medium text-indigo-600 dark:text-indigo-400">Home</a>
             <a href="#research" class="block py-2 text-base font-medium text-gray-600 dark:text-gray-300">Research</a>
             <a href="#projects" class="block py-2 text-base font-medium text-gray-600 dark:text-gray-300">Projects</a>
+            <a href="#archives" class="block py-2 text-base font-medium text-gray-600 dark:text-gray-300">The Archives</a>
             <a href="#about" class="block py-2 text-base font-medium text-gray-600 dark:text-gray-300">About</a>
             <a href="#contact" class="block py-2 text-base font-medium text-gray-600 dark:text-gray-300">Contact</a>
         </div>
@@ -100,15 +98,15 @@
                     Exploring the intersection of science, technology and law.
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-10 leading-relaxed font-normal">
-                    Pharmacology student investigating how artificial intelligence transforms technical research, patent inventorship doctrines, and intellectual property frameworks.
+                    Pharmacology student investigating how artificial intelligence transforms technical research, patent inventorship doctrines, and GPCR pharmacology.
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="#research" class="px-7 py-3.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium shadow-lg shadow-indigo-600/20 transition flex items-center space-x-2">
                         <span>Read Featured Research</span>
                         <i class="fa-solid fa-arrow-right text-sm"></i>
                     </a>
-                    <a href="#about" class="px-7 py-3.5 rounded-lg bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-700 font-medium transition">
-                        About My Background
+                    <a href="#archives" class="px-7 py-3.5 rounded-lg bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-700 font-medium transition">
+                        Explore The Archives
                     </a>
                 </div>
             </div>
@@ -257,31 +255,78 @@
         <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-gray-200 dark:border-gray-800">
             <div class="max-w-3xl mb-12">
                 <span class="text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold block mb-2">Portfolio</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-4">Projects & Academic Work</h2>
-                <p class="text-gray-600 dark:text-gray-300">Ongoing research, scientific inquiry, and technological investigations.</p>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-4">Research Project</h2>
+                <p class="text-gray-600 dark:text-gray-300">Investigating allosteric modulation and cellular signaling mechanisms in modern pharmacology.</p>
+            </div>
+            
+            <div class="bg-white dark:bg-navy-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 sm:p-10 shadow-sm">
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400">Laboratory Research Project</span>
+                <h3 class="font-serif text-2xl font-bold mt-4 mb-6">Probe dependent allosteric modulation of GPCRs</h3>
+                
+                <div class="space-y-4 text-gray-600 dark:text-gray-300 font-normal leading-relaxed text-base">
+                    <p>
+                        G protein-coupled receptors (GPCRs) are important targets for many medicines and play key roles in processes including neurotransmission and pain perception. In recent years, there has been considerable interest in allosteric modulators, which bind to sites on GPCRs that are distinct from the site recognised by the receptor's natural (endogenous) ligand. Allosteric modulators have the potential to offer advantages over conventional drugs including improved receptor selectivity and improved safety because there is a limit to their maximal effects.
+                    </p>
+                    <p>
+                        An important feature of allosteric modulators is probe dependence: the effect of an allosteric modulator can vary depending on which endogenous ligand is bound to the receptor. This is particularly relevant for receptors that can be activated by more than one endogenous ligand, but it has not been extensively investigated for many newly identified allosteric modulators.
+                    </p>
+                    <p>
+                        Our laboratory has contributed to the discovery and initial characterisation of allosteric modulators targeting dopamine and opioid receptors. These molecules might pave the way for improved treatments for Parkinson’s disease (dopamine receptors) or pain (opioid receptors). This project will investigate whether and how the effects of these modulators change when the receptors are activated by different endogenous agonists. Students will test a range of endogenous amines at dopamine receptors and endogenous peptides at opioid receptors, and determine how these ligands influence the activity of the allosteric modulators.
+                    </p>
+                    <p>
+                        Students will use cell-based GPCR signalling assays, including bioluminescence resonance energy transfer (BRET)-based approaches, and will develop practical skills in experimental design, data analysis and interpretation. The project will provide an opportunity to apply knowledge of GPCR pharmacology and drug discovery to a current research question and to gain experience with techniques used in modern pharmacological research.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Archives Section -->
+        <section id="archives" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-gray-200 dark:border-gray-800">
+            <div class="max-w-3xl mb-12">
+                <span class="text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold block mb-2">Non-Academic Writing</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-4">The Archives</h2>
+                <p class="text-gray-600 dark:text-gray-300">Reviews, essays, and reflections on movies, media, and cultural works. Published on Substack (@smarchives).</p>
             </div>
             
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white dark:bg-navy-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 shadow-sm">
-                    <span class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400">Current Research</span>
-                    <h3 class="font-serif text-xl font-bold mt-4 mb-3">AI & Patent Inventorship</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6 text-sm leading-relaxed">
-                        Investigating statutory reforms and disclosure frameworks to bridge the gap between autonomous machine learning systems and traditional human inventorship requirements in patent law.
-                    </p>
-                    <a href="#research" class="text-indigo-600 dark:text-indigo-400 text-sm font-semibold hover:underline inline-flex items-center space-x-1.5">
-                        <span>Read Paper</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
+                <!-- Speak Review Card -->
+                <div class="bg-white dark:bg-navy-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm flex flex-col justify-between">
+                    <img src="Speak Image 1.webp" alt="Speak Movie Poster" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400">Movie Review</span>
+                        <h3 class="font-serif text-2xl font-bold mt-4 mb-3">Speak</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 text-sm leading-relaxed">
+                            "Is it better to speak or to die?" An in-depth reflection on trauma, silence, and depression through the lens of Melinda's journey.
+                        </p>
+                        <button onclick="openModal('speakModal')" class="inline-flex items-center space-x-2 text-indigo-600 dark:text-indigo-400 text-sm font-semibold hover:underline">
+                            <span>Read Full Review</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <div class="bg-white dark:bg-navy-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 shadow-sm">
-                    <span class="text-xs font-semibold px-2.5 py-1 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">University Focus</span>
-                    <h3 class="font-serif text-xl font-bold mt-4 mb-3">Pharmacology & Drug Discovery</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6 text-sm leading-relaxed">
-                        Academic coursework and laboratory investigations exploring molecular mechanisms, cellular biology, enzyme kinetics, and modern computational drug design pathways.
-                    </p>
-                    <span class="text-gray-400 text-sm font-medium">Ongoing Portfolio</span>
+                <!-- Backrooms Review Card -->
+                <div class="bg-white dark:bg-navy-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm flex flex-col justify-between">
+                    <img src="Backrooms Image 2.webp" alt="Backrooms Still" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400">Movie Review</span>
+                        <h3 class="font-serif text-2xl font-bold mt-4 mb-3">Backrooms</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 text-sm leading-relaxed">
+                            Exploring addiction, loss of autonomy, grief, and unsolved trauma in an atmospheric psychological labyrinth.
+                        </p>
+                        <button onclick="openModal('backroomsModal')" class="inline-flex items-center space-x-2 text-indigo-600 dark:text-indigo-400 text-sm font-semibold hover:underline">
+                            <span>Read Full Review</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
                 </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="https://substack.com/@smarchives" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+                    <span>Visit Substack Publication (@smarchives)</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
             </div>
         </section>
 
@@ -306,7 +351,7 @@
                         </div>
                         <div class="p-5 rounded-xl bg-white dark:bg-navy-800 border border-gray-200 dark:border-gray-700">
                             <h4 class="font-semibold text-gray-900 dark:text-white mb-2"><i class="fa-solid fa-compass text-indigo-600 mr-2"></i> Research Interests</h4>
-                            <p class="text-sm">Artificial Intelligence, Intellectual Property, Drug Discovery & Innovation Policy</p>
+                            <p class="text-sm">GPCR Pharmacology, AI, Intellectual Property & Innovation Policy</p>
                         </div>
                     </div>
                 </div>
@@ -321,9 +366,9 @@
                 <p class="text-gray-600 dark:text-gray-300 mb-8">
                     Interested in discussing research, intellectual property, or scientific innovation? Feel free to reach out.
                 </p>
-                <a href="mailto:contact@sultanakingbogun.com" class="inline-flex items-center space-x-2 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium shadow-lg shadow-indigo-600/20 transition">
+                <a href="mailto:sultanakingbogun1@gmail.com" class="inline-flex items-center space-x-2 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium shadow-lg shadow-indigo-600/20 transition">
                     <i class="fa-solid fa-envelope"></i>
-                    <span>Send an Email</span>
+                    <span>sultanakingbogun1@gmail.com</span>
                 </a>
             </div>
         </section>
@@ -336,19 +381,106 @@
             <p>© 2026 Sultan Akingbogun. All rights reserved.</p>
             <div class="flex space-x-6">
                 <a href="https://github.com/sultanakingbogun" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 transition"><i class="fa-brands fa-github text-lg"></i></a>
+                <a href="https://substack.com/@smarchives" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 transition" title="Substack"><i class="fa-solid fa-pen-nib text-lg"></i></a>
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 transition"><i class="fa-brands fa-linkedin text-lg"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- Script for Theme Toggle & Mobile Menu -->
+    <!-- Speak Review Modal -->
+    <div id="speakModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm overflow-y-auto px-4 py-10">
+        <div class="bg-white dark:bg-navy-900 max-w-3xl mx-auto rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 p-8 sm:p-12 relative">
+            <button onclick="closeModal('speakModal')" class="absolute top-6 right-6 p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <span class="text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold block mb-2">The Archives · Movie Review</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-6">Speak</h2>
+            
+            <div class="prose dark:prose-invert max-w-none font-serif text-base sm:text-lg leading-relaxed space-y-6 text-gray-800 dark:text-gray-200">
+                <p>
+                    “Is it better to speak or to die?” Whilst it seems like a ridiculous question at first glance, when you really think about it, what is better? Is it better to constantly let your feelings be known to everyone, with the possibility of said feelings being thrown back in your face, or is it better to simply keep quiet until your time on Earth is complete? Would it be satisfactory to let everyone know the trauma you carry, or would it feel more pleasant to keep it between yourself and your mind until you are buried in your grave? This movie resonates deeply with me because it displays how depression is for the majority of people, and how one singular event can reshape the whole of your life. Melinda was a victim to sexual violence at a young age, leading to her calling the police, wanting a safe place. But instead her friends saw her as an “attention-seeker” and “squealer”, and they didn’t believe her story. These chain of events lead to Melissa choosing to “die” instead of speaking again, which brings me back to my question again, is it better to speak or to die?
+                </p>
+
+                <div class="my-8">
+                    <img src="Speak Image 2.webp" alt="Melinda in Speak" class="w-full rounded-xl shadow-md">
+                </div>
+
+                <p>
+                    Depression isn’t just black-and-white simple. It varies between individuals, and it can fluctuate throughout the day. You can have the greatest time of your life with your friends at a small gathering or at school, and then get home to your room where it’s just your and your mind isolated, and then it’s back again. And I don’t mean to be crude when saying this, but I truly believe the way in which you view this movie can correlate to how you view mental health. One review, and I quote, from Rotten Tomatoes says “This movie is just horrible. It’s too fast-paced, the main character literally does nothing but cower in a ball the whole time.” But when you think about what she has had to endure in the film, is it really abnormal for someone to resort to nothing but dead silence?
+                </p>
+                <p>
+                    To say I love this movie is an understatement. I think this movie is a safe space for people who have been through similar situations Melinda has endured, and also for people who have had family members go through these situations. It is hard to often spot the signs in someone struggling with mental health, but once you recognise them, I can’t stress how important it is to be there for them. You never truly know what is going on in someone’s life, and being a space for them to vent and speak to is probably one of the best things you can do for them, and potentially even save their life.
+                </p>
+                <p>
+                    And to all the people out there like Melinda, whilst it may seem better to not speak up due to the easiness of getting comfortable to the peace in silence, it has the potential to get worse. Find a vice. Even at first it is just the notes app in your phone, or even just speaking to yourself, just let it out, and you will feel so much better. Suicidal ideation has always been quite a hard topic for me to speak about but it resonates with me due to my understanding of how hard it can feel to live at times, but finding happiness was truly the greatest thing I could do for myself. And you are never truly a victim, but rather a survivor. The best thing you can do is continue to push through life.
+                </p>
+                <p class="font-bold text-indigo-600 dark:text-indigo-400 pt-4">
+                    So my final answer to my question? It’s better to speak.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Backrooms Review Modal -->
+    <div id="backroomsModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm overflow-y-auto px-4 py-10">
+        <div class="bg-white dark:bg-navy-900 max-w-3xl mx-auto rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 p-8 sm:p-12 relative">
+            <button onclick="closeModal('backroomsModal')" class="absolute top-6 right-6 p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <span class="text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold block mb-2">The Archives · Movie Review</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-6">Backrooms</h2>
+            
+            <div class="prose dark:prose-invert max-w-none font-serif text-base sm:text-lg leading-relaxed space-y-6 text-gray-800 dark:text-gray-200">
+                <p>
+                    Well. Where do I start. I just want to note that I did watch this only one time currently at 2am whilst fighting sleep, but I would be lying if I said I wasn’t fully attentive the whole time. But to summarise, this movie is a true piece of art. However rather than covering the whole plot like I did with “The Drama” starring Zendaya and Robert Pattinson, I want to cover the three topics that stuck out like a sore thumb to me: Addiction, specifically alcoholism, loss of autonomy and one’s self, and also grief and unsolved trauma. So let’s begin.
+                </p>
+
+                <h3 class="font-serif text-2xl font-bold text-gray-900 dark:text-white pt-4">Addiction (Alcoholism)</h3>
+                <p>
+                    Addiction is something I can always empathise with, as it is a disease one can often not control until it fully engulfs them. Clark is arguably the emotional centre of addiction with these, rarely seen sober and often seen lying about his sobriety, whether that is to mask his flaws or the fear people will not take him seriously if they discover he is intoxicated. Clark lost everything he loved due to his problems with alcohol: his wife, his dreams of becoming an architect, and ultimately his personality. Clark uses the substance in the movie for emotional avoidance, which is evident in the fact that he now needs therapy. For him the casual swig of a beer or cheap liquor postpones the feeling of grief, guilt, and fear, feelings he can’t accept until the leading moments to his ultimate demise. And the ironic thing is alcoholism isn’t presented as the root problem for Clark, but rather as a symptom of wounds he doesn’t want to confront. The drink promotes an escape from reality, but it truly reels him into a psychological labyrinth where relief and satisfaction becomes impossible. And so in this sense, the Backrooms are not just a location on the other side of the wall, they are an externalisation of addiction itself - repetitive, isolating, and practically impossible to escape, which is why he ultimately dies in the Backrooms. Clark is seen using the excuses alcohol provided him with until Mary gave him the harsh reality: that he is the problem. A lot of reviewers wanted to present Clark as the ultimate villain in this story, but I believe that with alcoholism being a disease, he is truly unaware with his own issues, even when sober, which may have created a monster, but not a villain. This can be seen especially towards the end when Mary attempts to escape the Backrooms, and when Pirate Clark is reaching out to her through the narrow walls with a final whine, rather than him trying to grasp her and eat, I believe that is the true Clark asking for help, and not wanting to be left alone and face his issues by himself. This can even be strengthened by the fact that we know the original Clark is traditionally right-handed, and the Clark that subdues Mary in the Backrooms uses his left side to do so, yet Pirate Clark reaches out in the final scene of the Backrooms with his right hand, wanting someone to truly speak to and understand why he became the internally complex character he is.
+                </p>
+
+                <div class="my-8">
+                    <img src="Backrooms Image 1.webp" alt="Backrooms Scene" class="w-full rounded-xl shadow-md">
+                </div>
+
+                <h3 class="font-serif text-2xl font-bold text-gray-900 dark:text-white pt-4">Loss of Autonomy</h3>
+                <p>
+                    This topic is very rich in this movie, very frequently displayed by the characters Mary Kline and Clark. The most overlooked tragedy in Backrooms is not that Clark and Mary become trapped, but that neither of them is ever truly free to begin with. Clark gradually loses his autonomy through alcoholism, reaching a point where his addiction dictates his decisions more than his own desires. Although he believes he is making choices, his dependency quietly controls the direction of his life, making the Backrooms a physical manifestation of that loss of agency, where every path appears different but ultimately leads him back to the same place.
+                </p>
+                <p>
+                    Mary’s loss of autonomy is quieter, but equally devastating. Shaped by her mother’s fear of anything unusual, she is raised to avoid curiosity and suppress the instinct to question the unknown, leaving her worldview defined by fear rather than personal choice. Even after escaping the Backrooms, she is denied the freedom to reclaim her life because what she witnessed makes her a threat to Async. Her capture demonstrates that physical escape does not guarantee freedom, as her agency is stripped away by an organisation determined to control the truth.
+                </p>
+                <p>
+                    Clark and Mary therefore arrive at the same destination through entirely different circumstances. One is imprisoned by addiction from within, while the other is confined by upbringing and institutional power from without. In both cases, Backrooms argues that the greatest horror is not becoming lost in an endless maze, but slowly losing the ability to determine the course of your own life.
+                </p>
+
+                <h3 class="font-serif text-2xl font-bold text-gray-900 dark:text-white pt-4">Grief and Unsolved Trauma</h3>
+                <p>
+                    Grief and unresolved trauma sit beneath both Clark and Mary’s experiences in Backrooms, shaping the way they interpret and respond to the world long before the physical horror takes hold. For Clark, grief is internalised and numbed rather than confronted, with alcohol acting as a temporary barrier between him and emotions he is not able to process. Instead of working through loss or regret, he suppresses it, allowing it to accumulate beneath the surface where it subtly influences his behaviour and deepens his dependence on escape. The Backrooms then function as a space where that buried trauma becomes unavoidable, stripping away distractions until he is left alone with what he has been avoiding.
+                </p>
+                <p>
+                    For Mary, trauma is inherited and conditioned through her mother’s anxieties, meaning she learns to associate the unknown with danger rather than curiosity, shaping her emotional responses before she has the language to understand them. This learned fear becomes a form of unresolved psychological inheritance, where trauma is not only experienced directly but passed down and reinforced as a survival mechanism. When she encounters the Backrooms, this conditioning intensifies her need for control and caution, but also limits her ability to fully reclaim agency afterwards, as what she has witnessed cannot be neatly separated from her sense of reality. In both cases, the film presents trauma not as a single event but as something persistent and cumulative, where unprocessed grief continues to shape perception, behaviour, and identity long after its origin has been forgotten or buried.
+                </p>
+
+                <h3 class="font-serif text-2xl font-bold text-gray-900 dark:text-white pt-4">My Conclusion</h3>
+                <p>
+                    Ultimately, Backrooms suggests that grief and unresolved trauma are not isolated experiences that can be neatly processed and left behind, but ongoing psychological environments that shape perception, behaviour, and identity in ways the characters themselves often fail to recognise. For Clark, this is reflected in the way his avoidance becomes self-perpetuating, as alcohol does not simply numb pain but gradually replaces the need to confront it at all, until even the idea of change feels threatening rather than hopeful. This is captured most clearly when he admits, “I don’t think I want to change,” a moment that reveals how deeply comfort in familiarity, however destructive, can outweigh the fear of the unknown.
+                </p>
+                <p>
+                    Mary’s experience mirrors this in a different form, as her understanding of the world is shaped by inherited fear and conditioned caution, meaning that even her attempts to escape or assert independence are filtered through a lens of anxiety that was never fully her own. In both cases, trauma does not remain in the past but actively restructures the present, creating internal labyrinths that echo the physical Backrooms themselves. The film ultimately implies that what traps Clark and Mary is not only where they are, but what they carry within them, as unresolved grief turns into a way of seeing the world that is as confining as any physical maze.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for Theme Toggle, Mobile Menu, & Modals -->
     <script>
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        // Toggle theme function
         themeToggleBtn.addEventListener('click', () => {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
@@ -361,24 +493,40 @@
             }
         });
 
-        // Set initial icon based on current mode
         if (document.documentElement.classList.contains('dark')) {
             themeIcon.className = 'fa-solid fa-sun';
         } else {
             themeIcon.className = 'fa-solid fa-moon';
         }
 
-        // Toggle mobile menu
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Close mobile menu on click link
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
         });
+
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('fixed')) {
+                event.target.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
     </script>
 </body>
 </html>
